@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+        "appwrite": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-appwrite",
+                "--all"
+            ],
+            "env": {
+                "APPWRITE_API_KEY": "standard_31dddd6d326c604c4acad400c81407ced40c110d9698b2c9cbe385e4670c26f905e703de1bc5edffcf8893193488f673d0a758715e7363377f729f442aedd7c55cb00af7b556fa7997600f1a65bfa00ced24b3e362c211cc508056613c37e574a76ca22e53ea3c9aff00734cd071f1cfb396ed8b178f52b3008427aeb03c4b04",
+                "APPWRITE_PROJECT_ID": "689d53dc001d36ebd3a4",
+                "APPWRITE_ENDPOINT": "http://31.97.229.201/v1"
+            }
+        }
+    }
+}

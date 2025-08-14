@@ -1,22 +1,22 @@
-import 'package:appwrite_flutter_starter_kit/data/models/log.dart';
-import 'package:appwrite_flutter_starter_kit/data/models/status.dart';
-import 'package:appwrite_flutter_starter_kit/data/repository/appwrite_repository.dart';
-import 'package:appwrite_flutter_starter_kit/ui/components/checkered_background.dart';
-import 'package:appwrite_flutter_starter_kit/ui/components/collapsible_bottomsheet.dart';
-import 'package:appwrite_flutter_starter_kit/ui/components/connection_status_view.dart';
-import 'package:appwrite_flutter_starter_kit/ui/components/getting_started_cards.dart';
-import 'package:appwrite_flutter_starter_kit/ui/components/top_platform_view.dart';
-import 'package:appwrite_flutter_starter_kit/utils/extensions/build_context.dart';
+import 'package:sxe/data/models/log.dart';
+import 'package:sxe/data/models/status.dart';
+import 'package:sxe/data/repository/appwrite_repository.dart';
+import 'package:sxe/ui/components/checkered_background.dart';
+import 'package:sxe/ui/components/collapsible_bottomsheet.dart';
+import 'package:sxe/ui/components/connection_status_view.dart';
+import 'package:sxe/ui/components/getting_started_cards.dart';
+import 'package:sxe/ui/components/top_platform_view.dart';
+import 'package:sxe/utils/extensions/build_context.dart';
 import 'package:flutter/material.dart';
 
-class AppwriteStarterKit extends StatefulWidget {
-  const AppwriteStarterKit({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<AppwriteStarterKit> createState() => _AppwriteStarterKit();
+  State<HomePage> createState() => _HomePage();
 }
 
-class _AppwriteStarterKit extends State<AppwriteStarterKit> {
+class _HomePage extends State<HomePage> {
   final List<Log> _logs = [];
   Status _status = Status.idle;
   final AppwriteRepository _repository = AppwriteRepository();

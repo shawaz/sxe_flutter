@@ -1,16 +1,17 @@
 import 'package:intl/intl.dart';
 import 'package:appwrite/appwrite.dart';
-import 'package:appwrite_flutter_starter_kit/data/models/log.dart';
-import 'package:appwrite_flutter_starter_kit/data/models/project_info.dart';
+import 'package:sxe/data/models/log.dart';
+import 'package:sxe/data/models/project_info.dart';
+import 'package:sxe/data/services/auth_service.dart';
 
 /// A repository responsible for handling network interactions with the Appwrite server.
 ///
-/// It provides a helper method to ping the server.
+/// It provides a helper method to ping the server and manages the Appwrite client.
 class AppwriteRepository {
   static const String pingPath = "/ping";
-  static const String appwriteProjectId = String.fromEnvironment('APPWRITE_PROJECT_ID');
-  static const String appwriteProjectName = String.fromEnvironment('APPWRITE_PROJECT_NAME');
-  static const String appwritePublicEndpoint = String.fromEnvironment('APPWRITE_PUBLIC_ENDPOINT');
+  static const String appwriteProjectId = '6892321a001a1e4a17d4';
+  static const String appwriteProjectName = 'SXE';
+  static const String appwritePublicEndpoint = 'http://31.97.229.201/v1';
 
   final Client _client = Client()
       .setProject(appwriteProjectId)
@@ -18,16 +19,30 @@ class AppwriteRepository {
 
   late final Account _account;
   late final Databases _databases;
+  late final AuthService _authService;
 
   AppwriteRepository._internal() {
     _account = Account(_client);
     _databases = Databases(_client);
+    _authService = AuthService(_client);
   }
 
   static final AppwriteRepository _instance = AppwriteRepository._internal();
 
   /// Singleton instance getter
   factory AppwriteRepository() => _instance;
+
+  /// Get the auth service instance
+  AuthService get authService => _authService;
+
+  /// Get the client instance
+  Client get client => _client;
+
+  /// Get the account instance
+  Account get account => _account;
+
+  /// Get the databases instance
+  Databases get databases => _databases;
 
   ProjectInfo getProjectInfo() {
     return ProjectInfo(
