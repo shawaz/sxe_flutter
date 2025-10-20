@@ -3,13 +3,12 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:sxe/providers/session_provider.dart';
-import 'package:sxe/ui/screens/main/activity_tracker_screen.dart';
-import 'package:sxe/ui/theme/sxe_colors.dart';
+import 'package:sxe/ui/screens/main/budget_screen.dart';
 import 'package:sxe/ui/screens/main/vision_board_screen.dart';
 import 'package:sxe/ui/screens/main/ai_assistant_screen.dart';
-import 'package:sxe/ui/screens/main/wallet_screen.dart';
 import 'package:sxe/ui/screens/main/profile_screen.dart';
 import 'package:sxe/ui/components/session_warning_dialog.dart';
+import 'package:sxe/ui/screens/main/task_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -23,9 +22,9 @@ class _MainNavigationState extends State<MainNavigation> {
 
   final List<Widget> _screens = [
     const VisionBoardScreen(),
-    const ActivityTrackerScreen(),
+    const TaskScreen(),
     const AIAssistantScreen(),
-    const WalletScreen(),
+    const BudgetScreen(),
     const ProfileScreen(),
   ];
 
@@ -36,7 +35,7 @@ class _MainNavigationState extends State<MainNavigation> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<SessionProvider>(context, listen: false)
           .startSessionMonitoring();
-    });
+    },);
   }
 
   @override
@@ -63,7 +62,6 @@ class _MainNavigationState extends State<MainNavigation> {
           onTap: () => sessionProvider.updateActivity(),
           onPanUpdate: (_) => sessionProvider.updateActivity(),
           child: Scaffold(
-            backgroundColor: SXEColors.background,
             appBar: AppBar(
               title: Text('SXE', style: TextStyle(color: Colors.white)),
               centerTitle: true,
@@ -74,12 +72,12 @@ class _MainNavigationState extends State<MainNavigation> {
             bottomNavigationBar: SafeArea(
               child: GNav(
                 gap: 4,
-                activeColor: SXEColors.primary,
-                iconSize: 22,
+                activeColor: Colors.deepOrangeAccent,
+                iconSize: 24,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
                 duration: const Duration(milliseconds: 400),
-                color: SXEColors.textTertiary,
+                color: Colors.black,
                 tabs: [
                   GButton(
                     icon: LucideIcons.target,
@@ -88,7 +86,7 @@ class _MainNavigationState extends State<MainNavigation> {
                     icon: LucideIcons.checkCircle2,
                   ),
                   GButton(
-                    icon: LucideIcons.bot,
+                    icon: LucideIcons.plusCircle,
                   ),
                   GButton(
                     icon: LucideIcons.circleDot,

@@ -9,9 +9,9 @@ import 'package:sxe/data/services/auth_service.dart';
 /// It provides a helper method to ping the server and manages the Appwrite client.
 class AppwriteRepository {
   static const String pingPath = "/ping";
-  static const String appwriteProjectId = '6892321a001a1e4a17d4';
+  static const String appwriteProjectId = "68f60c15000f272323f4";
   static const String appwriteProjectName = 'SXE';
-  static const String appwritePublicEndpoint = 'http://31.97.229.201/v1';
+  static const String appwritePublicEndpoint = 'https://fra.cloud.appwrite.io/v1';
 
   final Client _client = Client()
       .setProject(appwriteProjectId)

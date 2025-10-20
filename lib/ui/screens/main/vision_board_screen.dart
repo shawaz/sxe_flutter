@@ -19,7 +19,7 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
   late TabController _tabController;
 
   final Map<String, List<Map<String, dynamic>>> _visionCategories = {
-    'Soul': [
+    'SOUL': [
       {
         'title': 'Spiritual',
         'icon': LucideIcons.handMetal,
@@ -31,7 +31,7 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
       },
       {
         'title': 'Diet',
-        'icon': LucideIcons.pocketKnife,
+        'icon': LucideIcons.utensils,
         'progress': 0.6,
         'color': SXEColors.kelp,
         'aiSummary':
@@ -66,7 +66,7 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
         'status': 'Needs Attention'
       },
     ],
-    'Fun': [
+    'LIFE': [
       {
         'title': 'Memories',
         'icon': LucideIcons.camera,
@@ -111,7 +111,7 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
         'status': 'Fair'
       },
     ],
-    'Wealth': [
+    'WEALTH': [
       {
         'title': 'Networth',
         'icon': LucideIcons.piggyBank,
@@ -151,7 +151,7 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
         'color': SXEColors.lilac
       },
     ],
-    'Learn': [
+    'LEARN': [
       {
         'title': 'School',
         'icon': LucideIcons.graduationCap,
@@ -183,7 +183,7 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
         'color': SXEColors.lilac
       },
     ],
-    'Earn': [
+    'EARN': [
       {
         'title': 'Job',
         'icon': LucideIcons.briefcase,
@@ -247,15 +247,15 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
           children: [
             TabBar(
               controller: _tabController,
-              labelColor: SXEColors.primary,
-              unselectedLabelColor: SXEColors.textSecondary,
+              labelColor: Colors.deepOrangeAccent,
+              unselectedLabelColor: Colors.black,
               labelStyle: SXETypography.bodySmall.copyWith(
                 fontWeight: FontWeight.w700,
               ),
               unselectedLabelStyle: SXETypography.bodySmall.copyWith(
                 fontWeight: FontWeight.w700,
               ),
-              indicatorColor: SXEColors.primary,
+              indicatorColor: Colors.deepOrangeAccent,
               indicatorWeight: 3,
               tabs: _visionCategories.keys.map((category) {
                 return Tab(text: category);
@@ -342,7 +342,6 @@ class _VisionBoardScreenState extends State<VisionBoardScreen>
 
   Widget _buildCategoryView(String category, List<Map<String, dynamic>> cards) {
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
       itemCount: cards.length,
       itemBuilder: (context, index) {
         final card = cards[index];
@@ -439,20 +438,11 @@ class _VisionCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: SXEColors.surface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: statusColor.withValues(alpha: 0.3)),
-          boxShadow: [
-            BoxShadow(
-              color: statusColor.withValues(alpha: 0.1),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          border: Border(bottom: BorderSide(color: SXEColors.borderLight, width: 1)),
         ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

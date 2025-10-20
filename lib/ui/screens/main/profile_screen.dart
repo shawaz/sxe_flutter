@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:sxe/providers/auth_provider.dart';
-import 'package:sxe/providers/theme_provider.dart';
 import 'package:sxe/ui/theme/sxe_colors.dart';
 import 'package:sxe/ui/theme/sxe_typography.dart';
 
@@ -270,68 +269,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  void _showSettingsBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: SXEColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Settings',
-                style: SXETypography.functionalHeadline,
-              ),
-              const SizedBox(height: 24),
-              Consumer<ThemeProvider>(
-                builder: (context, themeProvider, child) {
-                  return ListTile(
-                    leading: Icon(themeProvider.currentThemeIcon),
-                    title: const Text('Theme'),
-                    subtitle:
-                        Text('Current: ${themeProvider.currentThemeName}'),
-                    trailing: Switch(
-                      value: themeProvider.isDarkMode,
-                      onChanged: (value) {
-                        if (value) {
-                          themeProvider.setThemeMode(ThemeMode.dark);
-                        } else {
-                          themeProvider.setThemeMode(ThemeMode.light);
-                        }
-                      },
-                    ),
-                    onTap: () => _showThemeDialog(context),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.account_circle),
-                title: const Text('Account Settings'),
-                onTap: () => Navigator.pop(context),
-              ),
-              ListTile(
-                leading: const Icon(Icons.security),
-                title: const Text('Privacy & Security'),
-                onTap: () => Navigator.pop(context),
-              ),
-              ListTile(
-                leading: const Icon(Icons.info),
-                title: const Text('About'),
-                onTap: () => Navigator.pop(context),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -367,71 +304,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  void _showThemeDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Consumer<ThemeProvider>(
-          builder: (context, themeProvider, child) {
-            return AlertDialog(
-              backgroundColor: SXEColors.surface,
-              title: Text(
-                'Choose Theme',
-                style: SXETypography.functionalHeadline,
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  RadioListTile<ThemeMode>(
-                    title: const Text('Light'),
-                    subtitle: const Text('Always use light theme'),
-                    value: ThemeMode.light,
-                    groupValue: themeProvider.themeMode,
-                    onChanged: (value) {
-                      if (value != null) {
-                        themeProvider.setThemeMode(value);
-                        Navigator.pop(context);
-                      }
-                    },
-                  ),
-                  RadioListTile<ThemeMode>(
-                    title: const Text('Dark'),
-                    subtitle: const Text('Always use dark theme'),
-                    value: ThemeMode.dark,
-                    groupValue: themeProvider.themeMode,
-                    onChanged: (value) {
-                      if (value != null) {
-                        themeProvider.setThemeMode(value);
-                        Navigator.pop(context);
-                      }
-                    },
-                  ),
-                  RadioListTile<ThemeMode>(
-                    title: const Text('System'),
-                    subtitle: const Text('Follow system setting'),
-                    value: ThemeMode.system,
-                    groupValue: themeProvider.themeMode,
-                    onChanged: (value) {
-                      if (value != null) {
-                        themeProvider.setThemeMode(value);
-                        Navigator.pop(context);
-                      }
-                    },
-                  ),
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Cancel'),
-                ),
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
 }
 
 class _ProfileSection extends StatelessWidget {
